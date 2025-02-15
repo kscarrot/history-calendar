@@ -37,27 +37,19 @@ describe('求公元年份干支', () => {
 })
 
 describe('求月干支', () => {
-  test('甲己之年丙作初', () => {
+  test('五虎遁月歌\n甲己之年丙作初，乙庚之岁戊为头。\n丙辛岁首从庚起，丁壬壬位顺流行。\n若问戊癸何方法，甲寅之上好推求。', () => {
     expect(求月干支(0, '甲')).toEqual('丙寅')
     expect(求月干支(0, '己')).toEqual('丙寅')
-  })
 
-  test('乙庚之岁戊为头', () => {
     expect(求月干支(0, '乙')).toEqual('戊寅')
     expect(求月干支(0, '庚')).toEqual('戊寅')
-  })
 
-  test('丙辛岁首从庚起', () => {
     expect(求月干支(0, '丙')).toEqual('庚寅')
     expect(求月干支(0, '辛')).toEqual('庚寅')
-  })
 
-  test('丁壬壬位顺流行', () => {
     expect(求月干支(0, '丁')).toEqual('壬寅')
     expect(求月干支(0, '壬')).toEqual('壬寅')
-  })
 
-  test('若问戊癸何方法，甲寅之上好推求', () => {
     expect(求月干支(0, '戊')).toEqual('甲寅')
     expect(求月干支(0, '癸')).toEqual('甲寅')
   })
@@ -104,6 +96,23 @@ describe('求日干支', () => {
 })
 
 describe('求时干支', () => {
+  test('五鼠遁日歌\n甲己还加甲，乙庚丙作初。\n丙辛从戊起，丁壬庚子居。\n戊癸何方发，壬子是真途。', () => {
+    expect(求时干支(0, '甲')).toEqual('甲子')
+    expect(求时干支(0, '己')).toEqual('甲子')
+
+    expect(求时干支(0, '乙')).toEqual('丙子')
+    expect(求时干支(0, '庚')).toEqual('丙子')
+
+    expect(求时干支(0, '丙')).toEqual('戊子')
+    expect(求时干支(0, '辛')).toEqual('戊子')
+
+    expect(求时干支(0, '丁')).toEqual('庚子')
+    expect(求时干支(0, '壬')).toEqual('庚子')
+
+    expect(求时干支(0, '戊')).toEqual('壬子')
+    expect(求时干支(0, '癸')).toEqual('壬子')
+  })
+
   test('甲日十二时', () => {
     expect(求时干支(0, '甲')).toEqual('甲子')
     expect(求时干支(1, '甲')).toEqual('乙丑')
