@@ -2,9 +2,10 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "*": ["*"]
+      "src/*": ["./src/*"],
+      "@/*": ["./src/*"]
     },
     "sourceMap": true,
     "strict": true,
@@ -15,7 +16,7 @@
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
-    "jsx": "react-jsx",
+    "jsx": "react-jsx"
   },
   "include": ["src", "src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules"]
