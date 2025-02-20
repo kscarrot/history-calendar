@@ -1,4 +1,5 @@
 import { 干支, 求年干支, 求月干支, 求日干支, 求时干支 } from 'src/constant/ganzhi'
+import dayjs from 'dayjs'
 
 describe('求公元年份干支', () => {
   const 求公元年份干支 = (公元年序数: number): 干支 => 求年干支(公元年序数 - 1)
@@ -139,5 +140,40 @@ describe('求时干支', () => {
     expect(求时干支(6, '辛')).toEqual('甲午')
     expect(求时干支(6, '壬')).toEqual('丙午')
     expect(求时干支(6, '癸')).toEqual('戊午')
+  })
+})
+
+describe('校验时间戳计算日干支', () => {
+  test('当前开发日干支计算2025-02-20', () => {
+    const 从开发日至国庆偏移天数 = dayjs('2025-02-20').diff(dayjs('1949-10-01'), 'day')
+    expect(求日干支(从开发日至国庆偏移天数)).toEqual('庚申')
+
+    const 从开发日至乙巳年正月初一偏移天数 = dayjs('2025-02-20').diff(dayjs('2025-01-29'), 'day')
+    //2025-02-20 乙巳年正月廿三 偏移22天
+    expect(从开发日至乙巳年正月初一偏移天数).toEqual(22)
+    expect(求日干支(从开发日至乙巳年正月初一偏移天数, '戊戌')).toEqual('庚申')
+
+    const 从开发日至四癸亥偏移天数 = dayjs('2025-02-20').diff(dayjs('1983-12-01'), 'day')
+    expect(求日干支(从开发日至四癸亥偏移天数, '癸亥')).toEqual('庚申')
+
+    const 从一月一日到十二月三十一日偏移天数 = dayjs('2025-01-01').diff(dayjs('2025-12-31'), 'day')
+    expect(从一月一日到十二月三十一日偏移天数).toEqual(-364)
+    expect(求日干支(Math.abs(从一月一日到十二月三十一日偏移天数), '庚午')).toEqual('甲戌')
+
+    const 从春分到秋分偏移天数 = dayjs('2025-03-20').diff(dayjs('2025-09-23'), 'day')
+    expect(从春分到秋分偏移天数).toEqual(-187)
+    expect(求日干支(Math.abs(从春分到秋分偏移天数), '戊子')).toEqual('乙未')
+
+    const 从秋分到明年春分偏移天数 = dayjs('2025-09-23').diff(dayjs('2026-03-20'), 'day')
+    expect(从秋分到明年春分偏移天数).toEqual(-178)
+    expect(求日干支(Math.abs(从秋分到明年春分偏移天数), '乙未')).toEqual('癸巳')
+
+    const 从冬至到夏至偏移天数 = dayjs('2025-12-21').diff(dayjs('2025-06-21'), 'day')
+    expect(从冬至到夏至偏移天数).toEqual(183)
+    expect(求日干支(从冬至到夏至偏移天数, '辛酉')).toEqual('甲子')
+
+    const 从冬至到明年夏至偏移天数 = dayjs('2025-12-21').diff(dayjs('2026-06-21'), 'day')
+    expect(从冬至到明年夏至偏移天数).toEqual(-182)
+    expect(求日干支(Math.abs(从冬至到明年夏至偏移天数), '甲子')).toEqual('丙寅')
   })
 })
