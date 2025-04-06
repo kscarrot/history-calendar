@@ -23,12 +23,12 @@ type Story = StoryObj<typeof meta>
 
 export const 天干排列: Story = {
   args: {
-    chunkNumber: 10,
+    每行个数: 10,
   },
 }
 
 export const 地支排列: Story = {
   args: {
-    chunkNumber: 12,
+    每行个数: 12,
   },
 }
