@@ -15,8 +15,8 @@ const 地址 = (年份: number) => {
   return `https://www.hko.gov.hk/tc/gts/time/calendar/text/files/T${年份}c.txt`
 }
 
-// 1901-2101
-const 年份范围 = Array.from({ length: 2101 - 1901 + 1 }, (_, i) => 1901 + i)
+// 1901-2100
+const 年份范围 = Array.from({ length: 2100 - 1901 + 1 }, (_, i) => 1901 + i)
 
 await Promise.all(
   年份范围.map(async (年份) => {
@@ -39,4 +39,4 @@ await Promise.all(
 )
 
 console.log('完成')
-// 执行 node src/数据/init.ts
+// 执行 node src/数据/源数据生成.ts

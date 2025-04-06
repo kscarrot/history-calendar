@@ -8,7 +8,7 @@
     "test": "jest",
     "prepare": "husky",
     "lint": "prettier . --write",
-    "build": "rm -rf dist && swc ./src -d dist --config-file .buildswcrc",
+    "build": "rm -rf dist && swc ./src -d dist --config-file .buildswcrc --copy-files",
     "dev": "vite",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
