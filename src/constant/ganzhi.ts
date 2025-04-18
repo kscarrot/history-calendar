@@ -33,7 +33,7 @@ enum 阴支 {
 }
 
 const 天干 = { ...阳干, ...阴干 } as const
-type 天干 = keyof typeof 天干
+export type 天干 = keyof typeof 天干
 const 地支 = { ...阳支, ...阴支 } as const
 type 地支 = keyof typeof 地支
 
